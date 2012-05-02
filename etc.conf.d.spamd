@@ -1,0 +1,2 @@
+SAHOME="/var/lib/spamassassin/"
+SPAMD_OPTS="-c --max-children 1 --username spamd -H ${SAHOME}spamd.log --pidfile /var/run/spamd.pid"

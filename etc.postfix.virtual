@@ -1,0 +1,7 @@
+##/etc/postfix/virtual
+#This is simply aliasing webaddresses to localhost people
+#I've already added the users you put in, check my work, and fix where I screwed up
+###EXAMPLE OF WORKING
+#swiss@ccdc.local swiss@localhost
+#mendez@ccdc.local mendez@localhost
+

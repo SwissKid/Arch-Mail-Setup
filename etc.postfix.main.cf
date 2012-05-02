@@ -1,0 +1,65 @@
+# Paths
+queue_directory = /var/spool/postfix
+command_directory = /usr/sbin
+daemon_directory = /usr/lib/postfix
+mail_owner = postfix
+#Domain settings
+myhostname = HOSTNAMEYES
+myorigin = ORIGINYES
+mydestination = $myhostname, localhost.$mydomain, localhost
+# Timeout settings and other limits
+delay_warning_time = 4h
+unknown_local_recipient_reject_code = 450
+minimal_backoff_time = 300s
+maximal_backoff_time = 1200s
+maximal_queue_lifetime = 1d
+bounce_queue_lifetime = 1d
+smtp_helo_timeout = 60s
+smtpd_soft_error_limit = 3
+smtpd_hard_error_limit = 12
+#SMTP settings
+smtpd_tls_cert_file=/etc/ssl/certs/mail.crt
+smtpd_tls_key_file=/etc/ssl/private/mail.key
+smtpd_use_tls=yes
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_scache
+smtp_tls_session_cache_database = btree:/var/lib/postfix/smtp_scache
+smtpd_tls_loglevel = 1
+smtpd_sasl_auth_enable = yes
+#smtp_sasl_auth_enable = yes
+smtpd_recipient_restrictions = permit_sasl_authenticated,
+				permit_mynetworks,
+				reject_unauth_destination,
+				check_policy_service inet:127.0.0.1:10030
+				permit
+smtpd_sender_restrictions = permit_sasl_authenticated, permit_mynetworks
+smtpd_sasl_security_options = noanonymous
+# SASL
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = /var/run/dovecot/auth-client
+# Network Settings
+inet_interfaces = all
+inet_protocals = ipv4
+mynetworks = 127.0.0.0/8
+relayhost = 
+# Email and mailbox settings
+alias_maps = hash:/etc/postfix/aliases
+alias_database = $alias_maps
+home_mailbox = Maildir/
+virtual_alias_domains = VIRTUALALIASDOMAINS
+virtual_alias_maps = hash:/etc/postfix/virtual
+mailbox_size_limit = 0
+# Misc
+mailbox_command = /usr/bin/procmail
+smtpd_banner = $myhostname ESMTP
+biff = no
+append_dot_mydomain = no
+debug_peer_level = 2
+sendmail_path = /usr/sbin/sendmail
+newaliases_path = /usr/bin/newaliases
+mailq_path = /usr/bin/mailq
+setgid_group = postdrop
+html_directory = no
+manpage_directory = /usr/man
+sample_directory = /etc/postfix/sample
+readme_directory = no
+recipient_delimiter = +

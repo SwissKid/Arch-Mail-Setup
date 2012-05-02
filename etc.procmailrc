@@ -1,0 +1,7 @@
+DROPPRIVS=yes
+DEFAULT=$HOME/Maildir/
+MAILDIR=$HOME/Maildir/
+
+:0:
+* ^X-Spam-Status: Yes
+.Junk/

@@ -4,8 +4,8 @@ command_directory = /usr/sbin
 daemon_directory = /usr/lib/postfix
 mail_owner = postfix
 #Domain settings
-myhostname = HOSTNAMEYES
-myorigin = ORIGINYES
+myhostname = $HOSTNAME2
+myorigin = $ORIGIN
 mydestination = $myhostname, localhost.$mydomain, localhost
 # Timeout settings and other limits
 delay_warning_time = 4h
@@ -45,7 +45,7 @@ relayhost =
 alias_maps = hash:/etc/postfix/aliases
 alias_database = $alias_maps
 home_mailbox = Maildir/
-virtual_alias_domains = VIRTUALALIASDOMAINS
+virtual_alias_domains = $ORIGIN
 virtual_alias_maps = hash:/etc/postfix/virtual
 mailbox_size_limit = 0
 # Misc
